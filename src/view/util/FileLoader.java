@@ -112,11 +112,11 @@ public final class FileLoader {
                                            Direction.valueOf(vehicleDirection)));
                     break;
 
-//                case 'H': // Human
-//                    vehicles.add(new Human(vehicleX, vehicleY,
-//                                             Direction.valueOf(vehicleDirection)));
-//                    break;
-//
+                case 'H': // Human
+                    vehicles.add(new Human(vehicleX, vehicleY,
+                                             Direction.valueOf(vehicleDirection)));
+                    break;
+
                 case 'T': // Truck
                     vehicles.add(new Truck(vehicleX, vehicleY,
                                              Direction.valueOf(vehicleDirection)));

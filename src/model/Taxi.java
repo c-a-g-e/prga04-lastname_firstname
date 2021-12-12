@@ -9,8 +9,6 @@ public class Taxi extends AbstractVehicle {
 
     public Taxi(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
-        myImageFileName = "taxi.gif";
-        myDeadImageFileName = "taxi_dead.gif";
         myDeathTime = 15;
     }
 
@@ -18,9 +16,8 @@ public class Taxi extends AbstractVehicle {
     public boolean canPass(Terrain theTerrain, Light theLight) {
         if (!wait) {
             if (theTerrain.equals(Terrain.LIGHT) && theLight.equals(Light.RED)) {
-                wait = true;
                 return false;
-            } else if (theTerrain.equals(Terrain.CROSSWALK) && !theLight.equals(Light.GREEN)) {
+            } else if (theTerrain.equals(Terrain.CROSSWALK) && theLight.equals(Light.RED)) {
                 wait = true;
                 return false;
             }
@@ -51,10 +48,4 @@ public class Taxi extends AbstractVehicle {
         return myDir.reverse();
     }
 
-    @Override
-    public void collide(Vehicle theOther) {
-        if (theOther.getClass().getSimpleName().equalsIgnoreCase("truck")) {
-            myAlive = false;
-        }
-    }
 }

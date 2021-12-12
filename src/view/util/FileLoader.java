@@ -102,10 +102,10 @@ public final class FileLoader {
             final char vehicleDirection = theInput.next().charAt(0);
 
             switch (vehicleType) {
-//              case 'B': // Bicycle
-//                    vehicles.add(new Bicycle(vehicleX, vehicleY,
-//                                               Direction.valueOf(vehicleDirection)));
-//                    break;
+              case 'B': // Bicycle
+                    vehicles.add(new Bicycle(vehicleX, vehicleY,
+                                               Direction.valueOf(vehicleDirection)));
+                    break;
 
                 case 'A': //ATV
                     vehicles.add(new Atv(vehicleX, vehicleY,

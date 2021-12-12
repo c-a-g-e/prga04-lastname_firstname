@@ -8,8 +8,6 @@ public class Truck extends AbstractVehicle{
 
     public Truck(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
-        myImageFileName = "truck.gif";
-        myDeadImageFileName = "truck_dead.gif";
     }
 
     @Override
@@ -34,8 +32,4 @@ public class Truck extends AbstractVehicle{
         return myDir.reverse();
     }
 
-    @Override
-    public void collide(Vehicle theOther) {
-        myAlive = true;
-    }
 }

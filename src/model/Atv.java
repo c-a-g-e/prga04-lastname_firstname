@@ -6,8 +6,6 @@ public class Atv extends AbstractVehicle{
 
     public Atv(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
-        myImageFileName = "atv.gif";
-        myDeadImageFileName = "atv_dead.gif";
         myDeathTime = 25;
     }
 
@@ -29,13 +27,6 @@ public class Atv extends AbstractVehicle{
             myDir = Direction.WEST;
         }
         return myDir;
-    }
-
-    @Override
-    public void collide(Vehicle theOther) {
-        if (theOther.getMyAlive()) {
-            myAlive = false;
-        }
     }
 
 }

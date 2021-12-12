@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Locale;
 import java.util.Random;
 
 public abstract class AbstractVehicle implements Vehicle {
@@ -14,8 +15,6 @@ public abstract class AbstractVehicle implements Vehicle {
     Boolean myAlive = true;
     int myDeathTime;
     int myTimeDead;
-    String myImageFileName;
-    String myDeadImageFileName;
 
     AbstractVehicle(int theX, int theY, Direction theDir) {
         myX = theX;
@@ -30,13 +29,22 @@ public abstract class AbstractVehicle implements Vehicle {
         return myDeathTime;
     }
 
+    /**
+     * Called when this Vehicle collides with the specified other Vehicle.
+     *
+     * @param theOther The other object.
+     */
+    @Override
+    public void collide(Vehicle theOther) {
+        if (myDeathTime > theOther.getDeathTime()) {
+            myAlive = false;
+            getImageFileName();
+        }
+    }
+
     @Override
     public String getImageFileName() {
-        if (this.getMyAlive()) {
-            return myImageFileName;
-        } else {
-            return myDeadImageFileName;
-        }
+        return getClass().getSimpleName().toLowerCase() + (myAlive ? ".gif" : "_dead.gif");
     }
 
     @Override

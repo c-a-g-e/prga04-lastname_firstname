@@ -9,8 +9,6 @@ public class Car extends AbstractVehicle {
 
     public Car(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
-        myImageFileName = "car.gif";
-        myDeadImageFileName = "car_dead.gif";
         myDeathTime = 15;
     }
 
@@ -39,10 +37,4 @@ public class Car extends AbstractVehicle {
         return myDir.reverse();
     }
 
-    @Override
-    public void collide(Vehicle theOther) {
-        if (theOther.getClass().getSimpleName().equalsIgnoreCase("truck")) {
-            myAlive = false;
-        }
-    }
 }

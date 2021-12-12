@@ -6,8 +6,6 @@ public class Bicycle extends AbstractVehicle {
 
     public Bicycle(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
-        myImageFileName = "bicycle.gif";
-        myDeadImageFileName = "bicycle_dead.gif";
         myDeathTime = 35;
     }
 
@@ -22,7 +20,15 @@ public class Bicycle extends AbstractVehicle {
      */
     @Override
     public boolean canPass(Terrain theTerrain, Light theLight) {
-        return false;
+        if (theTerrain.equals(Terrain.LIGHT) && (theLight.equals(Light.RED) || theLight.equals(Light.YELLOW))) {
+            return false;
+        } else if (theTerrain.equals(Terrain.CROSSWALK) && !theLight.equals(Light.GREEN)) {
+            return false;
+        }
+        return theTerrain.equals(Terrain.STREET)
+                || theTerrain.equals(Terrain.CROSSWALK)
+                || theTerrain.equals(Terrain.LIGHT)
+                || theTerrain.equals(Terrain.TRAIL);
     }
 
     /**
@@ -34,18 +40,20 @@ public class Bicycle extends AbstractVehicle {
      */
     @Override
     public Direction chooseDirection(Map<Direction, Terrain> theNeighbors) {
-        return null;
+        Direction[] availDirections = {myDir, myDir.left(), myDir.right()};
+        for (Direction theDirection : availDirections) {
+            if (theNeighbors.get(theDirection).equals(Terrain.TRAIL)) {
+                return theDirection;
+            }
+        }
+        for (Direction theDirection : availDirections) {
+            if (theNeighbors.get(theDirection).equals(Terrain.STREET)
+                    || theNeighbors.get(theDirection).equals(Terrain.CROSSWALK)
+                    || theNeighbors.get(theDirection).equals(Terrain.LIGHT)) {
+                return theDirection;
+            }
+        }
+        return myDir.reverse();
     }
 
-    /**
-     * Called when this Vehicle collides with the specified other Vehicle.
-     *
-     * @param theOther The other object.
-     */
-    @Override
-    public void collide(Vehicle theOther) {
-        if (theOther.getClass().getSimpleName().equalsIgnoreCase("truck")) {
-            myAlive = false;
-        }
-    }
 }

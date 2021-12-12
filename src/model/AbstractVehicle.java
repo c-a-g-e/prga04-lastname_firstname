@@ -65,6 +65,7 @@ public abstract class AbstractVehicle implements Vehicle {
             myTimeDead++;
         } else {
             myAlive = true;
+            myTimeDead = 0;
         }
     }
 

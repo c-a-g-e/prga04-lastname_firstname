@@ -127,10 +127,10 @@ public final class FileLoader {
 //                                            Direction.valueOf(vehicleDirection)));
 //                    break;
 //
-//                case 'C': // Car
-//                    vehicles.add(new Car(vehicleX, vehicleY,
-//                                            Direction.valueOf(vehicleDirection)));
-//                    break;
+                case 'C': // Car
+                    vehicles.add(new Car(vehicleX, vehicleY,
+                                            Direction.valueOf(vehicleDirection)));
+                    break;
 
                 default:
                     // this should never happen

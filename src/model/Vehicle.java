@@ -85,7 +85,7 @@ public interface Vehicle {
      * 
      * @return true if the object is alive, false otherwise.
      */
-    boolean isAlive();
+    boolean getMyAlive();
 
     /**
      * Called by the UI to notify a dead vehicle that 1 movement round has

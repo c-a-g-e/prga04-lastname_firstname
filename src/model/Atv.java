@@ -4,23 +4,11 @@ import java.util.Map;
 
 public class Atv extends AbstractVehicle{
 
-    int initialPosX;
-    int initialPosY;
-    int myX;
-    int myY;
-    Direction myDir;
-    String myImageFileName;
-    String myDeadImageFileName;
-    Boolean alive = true;
-
     public Atv(int theX, int theY, Direction theDir) {
-        myX = theX;
-        myY = theY;
-        initialPosX = theX;
-        initialPosY = theY;
-        myDir = theDir;
+        super(theX, theY, theDir);
         myImageFileName = "atv.gif";
         myDeadImageFileName = "atv_dead.gif";
+        myDeathTime = 25;
     }
 
     @Override
@@ -45,69 +33,9 @@ public class Atv extends AbstractVehicle{
 
     @Override
     public void collide(Vehicle theOther) {
-        if (theOther.isAlive()) {
-            alive = false;
+        if (theOther.getMyAlive()) {
+            myAlive = false;
         }
     }
 
-    @Override
-    public int getDeathTime() {
-        return 25;
-    }
-
-    @Override
-    public String getImageFileName() {
-        if (this.isAlive()) {
-            return myImageFileName;
-        } else {
-            return myDeadImageFileName;
-        }
-    }
-
-    @Override
-    public Direction getDirection() {
-        return myDir;
-    }
-
-    @Override
-    public int getX() {
-        return myX;
-    }
-
-    @Override
-    public int getY() {
-        return myY;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return alive;
-    }
-
-    @Override
-    public void poke() {
-
-    }
-
-    @Override
-    public void reset() {
-        alive = true;
-        myX = initialPosX;
-        myY = initialPosY;
-    }
-
-    @Override
-    public void setDirection(Direction theDir) {
-        myDir = theDir;
-    }
-
-    @Override
-    public void setX(int theX) {
-        myX = theX;
-    }
-
-    @Override
-    public void setY(int theY) {
-        myY = theY;
-    }
 }

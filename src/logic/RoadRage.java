@@ -67,7 +67,7 @@ public class RoadRage implements PropertyChangeEnabledRoadRageControls {
             final Map<Direction, Terrain> neighbors = generateNeighbors(v);
 
             // move the vehicle
-            if (v.isAlive()) {
+            if (v.getMyAlive()) {
                 final Direction newDirection = v.chooseDirection(neighbors);
                 v.setDirection(newDirection);
 

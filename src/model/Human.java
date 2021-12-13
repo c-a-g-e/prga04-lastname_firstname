@@ -1,9 +1,26 @@
 package model;
 
+/*
+Cage Peterson
+V1
+TCSS 305 Section C
+Dr. Dincer
+ */
+
 import java.util.Map;
 
+/**
+ * Human subclass of abstract vehicle.
+ * This subclass can only walk on grass, trails, and crosswalks (when the light is yellow or red).
+ */
 public class Human extends AbstractVehicle {
 
+    /**
+     * Constructor for AbstractVehicle child class. Calls super constructor to initialize location and death time.
+     * @param theX the initial x location
+     * @param theY the initial y location
+     * @param theDir the initial direction
+     */
     public Human(int theX, int theY, Direction theDir) {
         super(theX, theY, theDir);
         myDeathTime = 45;
@@ -12,6 +29,8 @@ public class Human extends AbstractVehicle {
     /**
      * Returns whether or not this object may move onto the given type of
      * terrain, when the street lights are the given color.
+     *
+     * human can travel on crosswalks that are green.
      *
      * @param theTerrain The terrain.
      * @param theLight   The light color.
@@ -26,6 +45,9 @@ public class Human extends AbstractVehicle {
     /**
      * Returns the direction this object would like to move, based on the given
      * map of the neighboring terrain.
+     *
+     * human will move on crosswalks, grass, and trails and prefers going straight > left > right.
+     * If human can walk on a crosswalk, it will always choose to do so.
      *
      * @param theNeighbors The map of neighboring terrain.
      * @return the direction this object would like to move.

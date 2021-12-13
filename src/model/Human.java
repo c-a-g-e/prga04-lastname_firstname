@@ -7,6 +7,8 @@ TCSS 305 Section C
 Dr. Dincer
  */
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -39,7 +41,11 @@ public class Human extends AbstractVehicle {
      */
     @Override
     public boolean canPass(Terrain theTerrain, Light theLight) {
-        return !theTerrain.equals(Terrain.CROSSWALK) || (theLight.equals(Light.YELLOW) || theLight.equals(Light.RED));
+        //can pass terrain that isnt crosswalk w/ green light
+        return (!theTerrain.equals(Terrain.CROSSWALK) || !theLight.equals(Light.GREEN))
+                && (!theTerrain.equals(Terrain.STREET)
+                && !theTerrain.equals(Terrain.LIGHT)
+                && !theTerrain.equals(Terrain.WALL));
     }
 
     /**
@@ -60,7 +66,7 @@ public class Human extends AbstractVehicle {
                 return theDirection;
             }
         }
-
+        Collections.shuffle(Arrays.asList(availDirections));
         for (Direction theDirection : availDirections) {
             if (theNeighbors.get(theDirection).equals(Terrain.GRASS)
                     || theNeighbors.get(theDirection).equals(Terrain.TRAIL)) {

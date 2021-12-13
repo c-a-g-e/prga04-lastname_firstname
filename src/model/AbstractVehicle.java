@@ -183,4 +183,13 @@ public abstract class AbstractVehicle implements Vehicle {
         myY = theY;
     }
 
+    /**
+     * Returns a string representing the class.
+     * @return a string representing the class.
+     */
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
 }

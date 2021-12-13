@@ -21,7 +21,6 @@ class AtvTest {
     /** Test method for Atv constructor. */
     @Test
     public void testAtvConstructor() {
-
         final Atv atv = new Atv(10, 11, Direction.NORTH);
 
         assertEquals( 10, atv.getX(), "Atv x coordinate not initialized correctly!");
@@ -29,13 +28,11 @@ class AtvTest {
         assertEquals( Direction.NORTH, atv.getDirection(), "Atv direction not initialized correctly!");
         assertEquals( 25, atv.getDeathTime(), "Atv death time not initialized correctly!");
         Assertions.assertTrue(atv.getMyAlive(), "Atv getMyAlive() fails initially!");
-
     }
 
     /** Test method for {@link Atv#collide(Vehicle)}. */
     @Test
-    void collide() {
-
+    void testCollide() {
         final Atv atv = new Atv(0, 0, Direction.NORTH);
         final Bicycle bike = new Bicycle(0, 0, Direction.NORTH);
         final Car car = new Car(0, 0, Direction.NORTH);
@@ -60,13 +57,11 @@ class AtvTest {
 
         atv.collide(truck);
         Assertions.assertFalse(atv.getMyAlive(), "Atv lived when colliding with truck.");
-
     }
 
     /** Test method for Atv setters. */
     @Test
     public void testAtvSetters() {
-
         final Atv atv = new Atv(10, 11, Direction.NORTH);
 
         atv.setX(12);
@@ -75,13 +70,11 @@ class AtvTest {
         assertEquals( 13, atv.getY(),"Atv setY failed!");
         atv.setDirection(Direction.SOUTH);
         assertEquals( Direction.SOUTH, atv.getDirection(),"Atv setDirection failed!");
-
     }
 
     /** Test method for Atv getters. */
     @Test
     void testAtvGetters() {
-
         final Atv atv = new Atv(10, 11, Direction.NORTH);
         final Truck truck = new Truck(0, 0, Direction.NORTH);
 
@@ -99,13 +92,11 @@ class AtvTest {
                 "Atv getImageFileName on dead instance failed!");
 
         assertEquals(25, atv.getDeathTime(), "Atv getDeathTime failed!");
-
     }
 
     /** Test method for {@link Atv#poke()}. */
     @Test
-    void poke() {
-
+    void testPoke() {
         final Atv atv = new Atv(0, 0, Direction.NORTH);
         final Truck truck = new Truck(0, 0, Direction.NORTH);
         atv.collide(truck);
@@ -114,35 +105,29 @@ class AtvTest {
             atv.poke();
         }
         assertTrue(atv.getMyAlive(), "poke() did not notify atv to revive!");
-
     }
 
     /** Test method for {@link Atv#reset()}. */
     @Test
-    void reset() {
-
+    void testReset() {
         final Atv atv = new Atv(0, 0, Direction.NORTH);
         atv.setX(10);
         atv.setY(15);
         atv.reset();
         assertEquals(0, atv.getX(), "Didn't reset x");
         assertEquals(0, atv.getY(), "Didn't reset y");
-
     }
 
     /** Test method for {@link Atv#canPass(Terrain, Light)}. */
     @Test
-    void canPass() {
-
+    void testCanPass() {
         final Atv atv = new Atv(0, 0, Direction.NORTH);
         assertFalse(atv.canPass(Terrain.WALL, Light.GREEN));
-
     }
 
     /** Test method for {@link Atv#chooseDirection(java.util.Map)}. */
     @Test
-    void chooseDirection() {
-
+    void testChooseDirection() {
         final Map<Direction, Terrain> neighbors = new HashMap<Direction, Terrain>();
 
         neighbors.put(Direction.WEST, Terrain.GRASS);
@@ -170,10 +155,15 @@ class AtvTest {
             }
         }
 
+        Assertions.assertTrue(seenWest && seenNorth && seenEast && seenSouth, "Atv chooseDirection() " +
+                "fails to select randomly " +
+                "among all possible valid choices!");
+    }
 
-
-        Assertions.assertTrue(seenWest && seenNorth && seenEast && seenSouth, "Human chooseDirection() fails to select randomly "
-                + "among all possible valid choices!");
+    @Test
+    void testToString() {
+        final Atv atv = new Atv(0, 0, Direction.NORTH);
+        assertEquals("Atv", atv.toString(), "Atv toString failed!");
     }
 
 }
